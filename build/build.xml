@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+
+<project basedir=".." default="default">
+
+    <property name="source" value="source"/>
+    <property name="build" value="build"/>
+    <property name="lib" value="libraries"/>
+
+    <path id="classpath">
+        <pathelement location="${lib}/jxm.jar"/>
+        <pathelement location="${lib}/commons-logging.jar"/>
+        <pathelement location="${lib}/commons-cli-1.0.jar"/>
+    </path>
+
+    <target name="compile">
+        <mkdir dir="${build}/class"/>
+        <javac
+            srcdir="${source}/java"
+            destdir="${build}/class"
+            includes="**/*.java"
+            classpathref="classpath"
+            debug="yes"
+        />
+        <copy todir="${build}/class">
+            <fileset dir="${source}/xml"/>
+        </copy>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${build}/jar"/>
+        <jar
+            jarfile="${build}/jar/expert.jar"
+            basedir="${build}/class"
+        >
+          <manifest>
+            <attribute name="Main-Class" value="net.spanbroek.expert.Expert"/>
+            <attribute name="Class-Path" value="commons-cli-1.0.jar commons-logging.jar jxm.jar"/>
+          </manifest>
+          <fileset dir="${source}/java"/>
+        </jar>
+        <copy todir="${build}/jar">
+            <fileset dir="${lib}"/>
+            <fileset dir=".">
+              <include name="expert.license"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="javadoc">
+        <mkdir dir="${build}/javadoc"/>
+        <javadoc
+            sourcepath="${source}/java"
+            destdir="${build}/javadoc"
+            packagenames="net.spanbroek.expert.*"
+            classpathref="classpath"
+        />
+    </target>
+
+    <target name="clean">
+        <delete dir="${build}/class"/>
+        <delete dir="${build}/jar"/>
+        <delete dir="${build}/javadoc"/>
+        <delete dir="${build}/release"/>
+    </target>
+
+    <target name="release" depends="clean,jar,javadoc">
+        <mkdir dir="${build}/release"/>
+        <mkdir dir="${build}/release/jar"/>
+        <mkdir dir="${build}/release/javadoc"/>
+        <copy todir="${build}/release/jar">
+            <fileset dir="${build}/jar"/>
+        </copy>
+        <copy todir="${build}/release/javadoc">
+            <fileset dir="${build}/javadoc"/>
+        </copy>
+    </target>
+
+    <target name="default" depends="jar"/>
+    <target name="all" depends="release"/>
+
+</project>
