@@ -60,4 +60,12 @@
     name="append"
     unmarshaller="net.spanbroek.expert.xml.AppendUnmarshaller"
   />
+  <element
+    name="bitwise_and"
+    unmarshaller="net.spanbroek.expert.xml.BitwiseAndUnmarshaller"
+  />
+  <element
+    name="substring"
+    unmarshaller="net.spanbroek.expert.xml.SubstringAssignUnmarshaller"
+  />
 </jxm>

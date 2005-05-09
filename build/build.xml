@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project basedir=".." default="default">
+<project name="expert" basedir=".." default="default">
 
     <property name="source" value="source"/>
     <property name="build" value="build"/>
@@ -10,6 +10,7 @@
         <pathelement location="${lib}/jxm.jar"/>
         <pathelement location="${lib}/commons-logging.jar"/>
         <pathelement location="${lib}/commons-cli-1.0.jar"/>
+        <pathelement location="${lib}/log4j-1.2.9.jar"/>
     </path>
 
     <target name="compile">

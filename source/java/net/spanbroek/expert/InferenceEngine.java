@@ -2,7 +2,6 @@ package net.spanbroek.expert;
 
 import com.lifecde.jxm.*;
 import org.xml.sax.*;
-import java.util.regex.*;
 import java.io.*;
 import java.util.*;
 

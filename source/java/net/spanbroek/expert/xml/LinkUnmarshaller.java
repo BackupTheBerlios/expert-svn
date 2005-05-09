@@ -1,7 +1,6 @@
 package net.spanbroek.expert.xml;
 
 import net.spanbroek.expert.*;
-import com.lifecde.jxm.*;
 
 /**
  * Contains the logic for unmarshalling a &lt;link&gt; XML tag.

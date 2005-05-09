@@ -2,7 +2,6 @@ package net.spanbroek.expert.xml;
 
 import net.spanbroek.expert.*;
 import com.lifecde.jxm.*;
-import org.xml.sax.*;
 
 /**
  * Contains the logic for unmarshalling an &lt;assign&gt; XML tag.
